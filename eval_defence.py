@@ -21,7 +21,7 @@ def do_eval():
     model_defence = keras.models.load_model("models/"+badnet_filename+"_defence.h5")
     # number of classes
     N = model_bd.output.shape[1]
-    y_bd = np.argmax(model_bd.predict(x), axis=1) + 1
+    y_bd = np.argmax(model_bd.predict(x), axis=1)[0] + 1
     y_defence = np.argmax(model_defence.predict(x), axis=1) + 1
     if y_defence != y_bd:
         y_defence = N + 1
